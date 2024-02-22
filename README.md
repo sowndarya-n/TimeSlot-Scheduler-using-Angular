@@ -13,5 +13,5 @@ Follow these instructions to get a copy of the project up and running on your lo
 # Installation
 1. Clone the repository to your local machine
 2. Navigate to the project directory using cd TimeSlot-Scheduler-using-Angular
-3. npm install
-4. Run the development server with ng serve command and navigate to http://localhost:4200/ in your web browser to view the application.
+3. To install the required packages use the command : `npm install`
+4. Run the development server with `ng serve` command and navigate to http://localhost:4200/ in your web browser to view the application.
