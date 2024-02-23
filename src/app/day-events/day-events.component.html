@@ -1,5 +1,10 @@
 <!-- day-events.component.html -->
 
+<div class="navbar customNavClass">
+  <img class="logoImg" src="../../assets/img/navlogo.png" routerLink="home"/>
+  <button class="navBtn" (click)="logout()">Logout</button>
+</div>
+
 <div class="posRel">
     <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
     <!-- <div class="event-details" *ngFor="let event of calendarEvents">
@@ -14,8 +19,8 @@
 
 <div class="confirmation-dialog" id="confirmationDialog">
   <p>Are you sure you want to delete this event?</p>
-  <button onclick="confirmAction(true)">Yes</button>
-  <button onclick="confirmAction(false)">No</button>
+  <button class="navBtn" onclick="confirmAction(true)">Yes</button>
+  <button  class="navBtn" onclick="confirmAction(false)">No</button>
 </div>
 
   

@@ -3,6 +3,8 @@ import { CalendarOptions, EventInput, EventApi } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 interface CalendarEvent {
   title: string;
@@ -16,7 +18,7 @@ interface CalendarEvent {
   styleUrls: ['./day-events.component.css']
 })
 export class DayEventsComponent implements OnInit {
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef,private authService: AuthenticationService, private router : Router) { }
   ngOnInit(): void {
     // this.addCustomDivToToolbar();
   }
@@ -80,6 +82,10 @@ export class DayEventsComponent implements OnInit {
     const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
     const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
     return `${formattedHours}:${formattedMinutes}`;
+  }
+  logout():void {
+    this.authService.logout();
+    this.router.navigate([this.authService.redirectUrl]);
   }
 
   updateSelectedTimeFrame(startTime: Date, endTime: Date) {

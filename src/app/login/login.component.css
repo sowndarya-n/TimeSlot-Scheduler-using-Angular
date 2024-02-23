@@ -1,0 +1,33 @@
+:host ::ng-deep body
+{
+    overflow: hidden;
+}
+.marB10
+{
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .loginWrapper
+{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+.container
+{
+    width: 300px; 
+  text-align: center;
+} */

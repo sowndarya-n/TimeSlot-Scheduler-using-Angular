@@ -1,0 +1,41 @@
+<!-- signup.component.html -->
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2>Sign Up</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <div class="form-group marB10">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" formControlName="username">
+            </div>
+            <div class="form-group marB10">
+              <label for="signupEmail">Email:</label>
+              <input type="email" class="form-control" id="signupEmail" formControlName="signupEmail">
+            </div>
+            <div class="form-group marB10">
+              <label for="signupPassword">Password:</label>
+              <input type="password" class="form-control" id="signupPassword" formControlName="signupPassword">
+              <!-- Add validation messages here -->
+            </div>
+            <div class="form-group marB10">
+              <label for="confirmPassword">Confirm Password:</label>
+              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+              <!-- Add validation messages here -->
+            </div>
+            <div class="form-group marB10">
+              <button type="submit" class="btn btn-success" [disabled]="!signupForm.valid">Sign Up</button>
+            </div>
+          </form>
+          <p class="text-center">
+            Already have an account? <a routerLink="/">Log In</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
