@@ -67,7 +67,7 @@ export class DayEventsComponent implements OnInit {
 handleDateClick(event: any) {
   const clickedTime = event.date;
   if (clickedTime < new Date()) {
-    this.showError('Cannot create events for past dates.');
+    this.showError('Cannot create events for past dates or times.');
     return;
   }
 
@@ -184,15 +184,27 @@ hideError(): void {
     const draggedEvent = dropInfo.event;
     const newStartTime = draggedEvent.start;
     const newEndTime = draggedEvent.end;
+    if (newStartTime < new Date()) {
+      dropInfo.revert();
+      this.showError('Cannot drag events to past dates or times.');
+      return;
+    }
+  
     console.log('Event dropped. New ST:', newStartTime, 'New ET:', newEndTime);
     this.updateEventInArray(dropInfo.oldEvent, draggedEvent);
     console.log('Updated Calendar Events:', this.calendarEvents);
   }
-
+  
   handleEventResize(resizeInfo: any) {
     const resizedEvent = resizeInfo.event;
     const newStartTime = resizedEvent.start;
     const newEndTime = resizedEvent.end;
+    if (newStartTime < new Date()) {
+      resizeInfo.revert();
+      this.showError('Cannot resize events to past dates or times.');
+      return;
+    }
+  
     console.log('Event resized. New ST:', newStartTime, 'New ET:', newEndTime);
     this.updateEventInArray(resizeInfo.oldEvent, resizedEvent);
     console.log('Updated Calendar Events:', this.calendarEvents);
