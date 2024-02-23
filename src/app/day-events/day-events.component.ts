@@ -172,16 +172,12 @@ addCustomDivToToolbar() {
   this.cdr.detectChanges();
   const toolbarElement = document.querySelector('.fc-header-toolbar');
 
-  if (toolbarElement) {
-    // Create a new div element
+  if (toolbarElement) 
+  {
     const customDiv = document.createElement('div');
     customDiv.className = 'fc-toolbar-chunk';
-
-    // Create a div for the button group
     const buttonGroupDiv = document.createElement('div');
     buttonGroupDiv.className = 'fc-button-group';
-
-    // Create buttons and add them to the button group div
     const buttons: HTMLButtonElement[] = [];
     ['15min', '30min', '60min'].forEach((label, index) => {
       const button = document.createElement('button');
@@ -189,16 +185,9 @@ addCustomDivToToolbar() {
       button.textContent = label;
       button.className = 'fc-button fc-button-primary' + (label === '30min' ? ' fc-button-active' : '');
       buttonGroupDiv.appendChild(button);
-
-      // Add a click event listener to each button
       button.addEventListener('click', () => {
-        // Remove the .fc-button-primary class from all buttons
-        buttons.forEach(btn => btn.classList.remove('fc-button-active'));
-
-        // Add the .fc-button-primary class to the clicked button
-        button.classList.add('fc-button-active');
-
-        // Update the selectedDuration based on the clicked button
+      buttons.forEach(btn => btn.classList.remove('fc-button-active'));
+      button.classList.add('fc-button-active');
         switch (label) {
           case '15min':
             this.selectedDuration = 15;
@@ -209,13 +198,12 @@ addCustomDivToToolbar() {
           case '60min':
             this.selectedDuration = 60;
             break;
-          // Add more cases for other button labels if needed
         }
 
         console.log('Selected Duration:', this.selectedDuration);
       });
 
-      buttons.push(button); // Store the button elements in the array
+      buttons.push(button);
     });
 
     customDiv.style.display = 'flex';  
@@ -231,10 +219,6 @@ addCustomDivToToolbar() {
     console.log('Toolbar element not found!');
   }
 }
-
-
-
-
 
 
 }

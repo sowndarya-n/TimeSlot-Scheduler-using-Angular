@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private router: Router) {
     this.forgotPasswordForm = this.fb.group({
       forgotEmail: ['', [Validators.required, Validators.email]]
     });
@@ -17,10 +18,10 @@ export class ForgotPasswordComponent {
 
   forgotPassword() {
     if (this.forgotPasswordForm.valid) {
-      // Implement your forgot password logic here
+      this.router.navigate(['home']);
       console.log('Forgot password email sent successfully!');
     } else {
-      // Handle form errors or display a message
+      
       console.log('Invalid form. Please check your email.');
     }
   }

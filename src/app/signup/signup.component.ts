@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent {
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required]],
       signupEmail: ['', [Validators.required, Validators.email]],
@@ -24,20 +25,23 @@ export class SignupComponent {
     }, { validators: this.passwordsMatchValidator });
   }
 
-  signup() {
-    if (this.signupForm.valid) {
-      // Implement your signup logic here
+  signup() 
+  {
+    if (this.signupForm.valid) 
+    {
+      this.router.navigate(['home']);
       console.log('Signup successful!');
-    } else {
-      // Handle form errors or display a message
-      console.log('Invalid form. Please check your inputs.');
+    } 
+    else 
+    {
+      console.log('Signup failed!');
     }
   }
 
-  private passwordsMatchValidator(group: FormGroup): null | { mismatch: true } {
+  private passwordsMatchValidator(group: FormGroup): null | { mismatch: true } 
+  {
     const password = group.get('signupPassword')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
-
     return password === confirmPassword ? null : { mismatch: true };
   }
 }
