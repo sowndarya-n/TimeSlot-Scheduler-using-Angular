@@ -7,6 +7,13 @@
 
 <div class="posRel">
     <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
+    <div class="erroDiv" *ngIf="isErrorMessageVisible">
+      <div class="error-popup" >
+        <div class="error-message">{{ errorMessage }}</div>
+      </div>
+    </div>
+    
+    
     <!-- <div class="event-details" *ngFor="let event of calendarEvents">
         <div class="event">
           <button (click)="deleteEvent(event)">X</button>

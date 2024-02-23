@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
+import { NgZone } from '@angular/core';
 
 interface CalendarEvent {
   title: string;
@@ -18,14 +19,15 @@ interface CalendarEvent {
   styleUrls: ['./day-events.component.css']
 })
 export class DayEventsComponent implements OnInit {
-  constructor(private cdr: ChangeDetectorRef,private authService: AuthenticationService, private router : Router) { }
+  constructor(private cdr: ChangeDetectorRef,private authService: AuthenticationService, private router : Router,private ngZone: NgZone) { }
   ngOnInit(): void {
     // this.addCustomDivToToolbar();
   }
   ngAfterViewInit(): void {
     this.addCustomDivToToolbar();
   }
-
+  errorMessage: string = ''; 
+  isErrorMessageVisible: boolean = false;
   selectedDuration: number = 30; 
   selectedTimeFrame: string = ''; 
   private selectedTimeFrames: { start: Date; end: Date }[] = []; 
@@ -61,21 +63,50 @@ export class DayEventsComponent implements OnInit {
     eventResize: this.handleEventResize.bind(this),
   };
 
-  handleDateClick(event: any) {
-    const clickedTime = event.date;
-    const startTime = new Date(clickedTime);
-    startTime.setMinutes(Math.floor(startTime.getMinutes() / 30) * 30);
-    const endTime = new Date(startTime.getTime() + this.selectedDuration * 60000);
-    console.log('Selected Time Frame:', startTime, 'to', endTime); 
-    const newEvent: CalendarEvent = {
-      title: 'New Event',
-      start: startTime.toISOString(),
-      end: endTime.toISOString(),
-    };  
-    this.calendarEvents = [...this.calendarEvents, newEvent];
-    this.updateSelectedTimeFrame(startTime, endTime);
-    console.log("Created event is:", newEvent);
+
+handleDateClick(event: any) {
+  const clickedTime = event.date;
+  if (clickedTime < new Date()) {
+    this.showError('Cannot create events for past dates.');
+    return;
   }
+
+  const startTime = new Date(clickedTime);
+  startTime.setMinutes(Math.floor(startTime.getMinutes() / 30) * 30);
+  const endTime = new Date(startTime.getTime() + this.selectedDuration * 60000);
+
+  console.log('Selected Time Frame:', startTime, 'to', endTime);
+
+  const newEvent: CalendarEvent = {
+    title: 'Available Time',
+    start: startTime.toISOString(),
+    end: endTime.toISOString(),
+  };
+  this.calendarEvents = [...this.calendarEvents, newEvent];
+  this.updateSelectedTimeFrame(startTime, endTime);
+  console.log("Created event is:", newEvent);
+  this.hideError();
+}
+
+
+showError(message: string): void {
+  this.errorMessage = message;
+  this.isErrorMessageVisible = true;
+  this.cdr.detectChanges(); 
+  setTimeout(() => {
+    this.hideError();
+  }, 3000); 
+}
+
+hideError(): void {
+  this.ngZone.run(() => {
+    this.isErrorMessageVisible = false;
+  });
+}
+
+
+
+  
   
     
   formatTime(hours: number, minutes: number): string {
