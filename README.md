@@ -6,7 +6,7 @@ This Angular project is a TimeSlot Scheduler application that leverages the Full
 
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-# Prerequisites
+# Pre-requisites
 1. Node.js: [Download and Install Node.js](https://nodejs.org/)
 2. Angular CLI: Install using `npm install -g @angular/cli`
 
