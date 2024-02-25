@@ -6,6 +6,25 @@
 {
     margin-bottom: 10px;
 }
+.labelCustom
+{
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.marB0 
+{
+  margin-bottom: 0px;
+}
+.textAlignCenter
+{
+  text-align: center;
+}
+.loginBtn
+{
+  background-color: #1A252F !important;
+  border-color: #1A252F;
+  opacity: 1;
+}
 
 
 

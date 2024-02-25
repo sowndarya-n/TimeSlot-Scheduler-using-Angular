@@ -5,6 +5,20 @@
     }
     .logoImg
     {
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+    }
+    .navBrand
+    {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+    }
+    .logoutImg
+    {
+      cursor: pointer;
       width: 35px;
       height: 35px;
       border-radius: 5px;
@@ -13,7 +27,7 @@
     {
       padding: 5px;
     margin-bottom: 10px;
-    background: #9b9b9b;
+    background: #1A252F;
     }
     .customP
     {
@@ -47,6 +61,16 @@
         justify-content: center; 
         align-items: center;
     }
+    :host ::ng-deep  .fc .fc-col-header-cell-cushion {
+      color: #1A252F;
+      text-decoration: none;
+  }
+  :host ::ng-deep .fc-timegrid-event-harness-inset .fc-timegrid-event, .fc-timegrid-event.fc-event-mirror, .fc-timegrid-more-link
+  {
+    background-color: #1A252F;
+    box-shadow: 0 0 0 1px #1A252F;
+    border-color: #1A252F;
+  }
   .overlay {
     display: none;
     position: fixed;

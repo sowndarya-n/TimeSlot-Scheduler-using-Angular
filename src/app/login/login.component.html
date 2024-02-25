@@ -3,14 +3,14 @@
     <div class="row justify-content-center mt-5">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">
-            <h2>Login</h2>
+          <div class="card-header textAlignCenter">
+            <h2 class="marB0">Login</h2>
           </div>
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="login()">
               <div class="form-group marB10">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" formControlName="email">
+                <label for="email" class="labelCustom" >Email:</label>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your registered email">
                 <div *ngIf="loginForm.get('email')!.hasError('required') && loginForm.get('email')!.touched">
                   Email is required.
                 </div>
@@ -19,8 +19,8 @@
                 </div>
               </div>
               <div class="form-group marB10">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" formControlName="password">
+                <label for="password" class="labelCustom">Password:</label>
+                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
                 <div *ngIf="loginForm.get('password')!.hasError('required') && loginForm.get('password')!.touched">
                   Password is required.
                 </div>
@@ -28,8 +28,8 @@
                   Password must be minimum 8 alphanumeric characters.
                 </div>                
               </div>
-              <div class="form-group marB10">
-                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+              <div class="form-group marB10 textAlignCenter">
+                <button type="submit" class="btn btn-primary loginBtn" [disabled]="!loginForm.valid">Login</button>
               </div>
 
               <p class="text-center">
