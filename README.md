@@ -1,4 +1,4 @@
-# TimeSlot-Scheduler-using-Angular
+# ScheduleShare website using Angular
 
 This Angular project is a TimeSlot Scheduler application that leverages the Full Calendar library to create a scheduling system similar to the Doodle calendar feature https://doodle.com/meeting/organize/groups. Also, the Full Calendar library has been customized to meet specific requirements.
 
